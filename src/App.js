@@ -28,7 +28,7 @@ export default class App extends Component {
 
   onFolderClick = (event) => {
     console.log ("folder click noticed and here is the event", event.target)
-    this.setState({folderSelection: event.target})
+    this.setState({folderSelection: event.target.value})
   //   const newNotes = 
   //   this.state.notes.filter(function (item){
   //     return item.id !== event.target.value
