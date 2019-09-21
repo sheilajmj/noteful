@@ -17,7 +17,7 @@ export default class App extends Component {
     this.state = {
       folders: dummyStore.folders,
       notes: dummyStore.notes,
-      folderSelection:" ",
+      folderSelection: " ",
       noteSelection: " ",
     }
   }
@@ -27,8 +27,8 @@ export default class App extends Component {
   // }
 
   onFolderClick = (event) => {
-    console.log ("folder click noticed and here is the event", event.target.value)
-    this.setState({folderSelection: event.target.value})
+    console.log ("folder click noticed and here is the event", event.target)
+    this.setState({folderSelection: event.target})
   //   const newNotes = 
   //   this.state.notes.filter(function (item){
   //     return item.id !== event.target.value
@@ -70,7 +70,9 @@ export default class App extends Component {
           path= {folderIdPath}
           render = {() => 
             <FolderSidebar 
-            folders = {this.state.folders}/>}
+            folders = {this.state.folders}
+            onClick = {this.onFolderClick}
+            />}
            />
           <Route path={`/note/${this.state.notes.id}`}  component={NoteSidebar} />
         </section>
