@@ -9,13 +9,10 @@ class Folder extends Component {
     console.log (folder.id)
     return (
         <section className="folder" id = {folder.id} key={folder.id}>      
-            <Link 
-              to={`/folder/${ folder.id }`} 
-              onClick= {this.props.onClick.bind(this)} 
-              value = {folder.id}
-            > 
+            <Link to={`/folder/${ folder.id }`} onClick= {this.props.onClick.bind(this)} value = {folder.id}> 
               {folder.name}  
             </Link>
+        
         </section>
     )
   }    
