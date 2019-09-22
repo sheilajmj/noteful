@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import Note from './note'
 
 class FolderMain extends Component {
 
   render(){
+    const newNotes = this.props.notes.filter(note => note.folderId !== this.props.match.params.folderId) 
+    console.log ('will this log?' + this.props.match)
+    const noteComponents =  newNotes.map((item) => {
+      return <Note item = {item} onClick= {this.props.onClick.bind(this)}/> 
+    });
+          
+
     return (        
         <section className="note">
-        only the selected folder's notes show here
+          {noteComponents}
         </section>
     )
   }

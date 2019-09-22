@@ -26,15 +26,15 @@ export default class App extends Component {
   //   console.log("folder selection state changed")
   // }
 
-  onFolderClick = (event) => {
-    console.log ("folder click noticed and here is the event", event.target)
-    this.setState({folderSelection: event.target.value})
-  //   const newNotes = 
-  //   this.state.notes.filter(function (item){
-  //     return item.id !== event.target.value
-  //   })
-  // this.setState({notes: newNotes}) 
-  }; 
+  // onFolderClick = (event) => {
+  //   console.log ("folder click noticed and here is the event", this.props.match.params.folderId)
+  //   this.setState({folderSelection: this.props.match.params.folderId})
+  // //   const newNotes = 
+  // //   this.state.notes.filter(function (item){
+  // //     return item.folderId !== event.target.value
+  // //   })
+  // // this.setState({notes: newNotes}) 
+  // }; 
 
   onDeleteNote = (event) => {
     console.log ("note click noticed")
@@ -47,10 +47,9 @@ export default class App extends Component {
   }
 
 
-
   render(){
     let folderIdPath = this.state.folders.map((folder) => {
-      return `/folder/${folder.id}`
+      return `/folder/:${folder.id}`
     })
     return (
       <main>
@@ -79,24 +78,23 @@ export default class App extends Component {
         <section className="main">
           <Route 
             exact path='/' 
-            render={() =>
+            render={(props) =>
             <MainMain 
+              {...props}
               notes= {this.state.notes}
               onClick = {this.onDeleteNote}
              />}
            />
           <Route path={folderIdPath} 
-            render={() =>
-            <FolderMain 
-              notes= {this.state.notes}
-             />}
+            render={(props) => <FolderMain {...props} notes={this.state.notes} onClick = {this.onDeleteNote}/>}
            />
           <Route 
             path={`/note/${this.state.notes.id}`} 
-            render={() =>
+            render={(props) =>
             <NoteMain 
+              {...props}  
               notes= {this.state.notes}
-             />}
+            />}
            />
         </section>
       </main>
