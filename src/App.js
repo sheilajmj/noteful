@@ -58,6 +58,7 @@ export default class App extends Component {
         </header>
         <section className="sidebar">
           <Route 
+          {...props}
           exact path='/' 
           render = {() =>
             <MainSidebar 
@@ -66,6 +67,7 @@ export default class App extends Component {
             />}
             />
           <Route 
+          {...props}
           path= {folderIdPath}
           render = {() => 
             <FolderSidebar 
