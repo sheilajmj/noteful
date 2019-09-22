@@ -58,7 +58,6 @@ export default class App extends Component {
         </header>
         <section className="sidebar">
           <Route 
-          {...props}
           exact path='/' 
           render = {() =>
             <MainSidebar 
@@ -67,7 +66,6 @@ export default class App extends Component {
             />}
             />
           <Route 
-          {...props}
           path= {folderIdPath}
           render = {() => 
             <FolderSidebar 
@@ -82,7 +80,6 @@ export default class App extends Component {
             exact path='/' 
             render={(props) =>
             <MainMain 
-              {...props}
               notes= {this.state.notes}
               onClick = {this.onDeleteNote}
              />}
@@ -94,7 +91,6 @@ export default class App extends Component {
             path={`/note/${this.state.notes.id}`} 
             render={(props) =>
             <NoteMain 
-              {...props}  
               notes= {this.state.notes}
             />}
            />
