@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'
 
 
 class Folder extends Component {
+  componentDidMount() {
+   const { id } = this.props.match.params.id
+  this.props.folder.id
+  }
 
   render(){
     const folder = this.props.folder
-    console.log (folder.id)
+    console.log ('this is the folder.id', folder.id)
     return (
         <section className="folder" id = {folder.id} key={folder.id}>      
             <Link to={`/folder/${ folder.id }`}> 

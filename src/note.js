@@ -8,8 +8,7 @@ class Note extends Component {
     const item = this.props.item
     return (
         <section className="note" id = {item.id} key = {item.id}> 
-        
-            <Link to={`{/note/${item.id}`}><h2> {item.name} </h2></Link>
+          <Link to={`{/note/${item.id}`}><h2> {item.name} </h2></Link>
             <p>{item.content}</p>
             <h3>{item.modified}</h3>
            

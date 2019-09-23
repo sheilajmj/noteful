@@ -22,6 +22,7 @@ export default class App extends Component {
     }
   }
 
+
   // onFolderSelect = () => {
   //   console.log("folder selection state changed")
   // }
@@ -48,9 +49,12 @@ export default class App extends Component {
 
 
   render(){
-    let folderIdPath = this.state.folders.map((folder) => {
-      return `/folder/:${folder.id}`
-    })
+    // let folderIdPath = this.state.folders.map((folder) => {
+    //   return `/folder/:${folder.id}`
+    //})
+
+    console.log ('Here is this.state.folder - is it objects in an object?', this.state.folders)
+
     return (
       <main>
         <header className='App'>
@@ -66,14 +70,16 @@ export default class App extends Component {
             />}
             />
           <Route 
-          path= {folderIdPath}
+          path= '/folder/:id'
           render = {() => 
             <FolderSidebar 
             folders = {this.state.folders}
             onClick = {this.onFolderClick}
             />}
            />
-          <Route path={`/note/${this.state.notes.id}`}  component={NoteSidebar} />
+          <Route path={`/note/:id`}  
+            render = {() =>
+              <NoteSidebar/>} />
         </section>
         <section className="main">
           <Route 
@@ -84,11 +90,14 @@ export default class App extends Component {
               onClick = {this.onDeleteNote}
              />}
            />
-          <Route path={folderIdPath} 
-            render={(props) => <FolderMain {...props} notes={this.state.notes} onClick = {this.onDeleteNote}/>}
+          <Route path= '/folder/:id'
+            render={(props) => 
+            <FolderMain {...props} 
+            notes={this.state.notes} 
+            onClick = {this.onDeleteNote}/>}
            />
           <Route 
-            path={`/note/${this.state.notes.id}`} 
+            path={`/note/:id`} 
             render={(props) =>
             <NoteMain 
               notes= {this.state.notes}
