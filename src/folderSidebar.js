@@ -6,8 +6,7 @@ class FolderSidebar extends Component {
   render(){
     const folderComponents = this.props.folders.map((folder) => {
       return <Folder  
-      folder = {folder} 
-      // onClick = {this.props.onClick.bind(this)}
+      folder = {folder}
        />
     })
 

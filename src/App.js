@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import MainSidebar from './mainSidebar'
 import FolderSidebar from './folderSidebar'
 import NoteSidebar from './noteSidebar'
@@ -8,10 +9,10 @@ import FolderMain from './folderMain'
 import NoteMain from './noteMain'
 import './dummy-store'
 import dummyStore from './dummy-store';
+import './sidebar.css';
+import './index.css';
 
-
-
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,21 +24,7 @@ export default class App extends Component {
   }
 
 
-  // onFolderSelect = () => {
-  //   console.log("folder selection state changed")
-  // }
-
-  // onFolderClick = (event) => {
-  //   console.log ("folder click noticed and here is the event", this.props.match.params.folderId)
-  //   this.setState({folderSelection: this.props.match.params.folderId})
-  // //   const newNotes = 
-  // //   this.state.notes.filter(function (item){
-  // //     return item.folderId !== event.target.value
-  // //   })
-  // // this.setState({notes: newNotes}) 
-  // }; 
-
-  onDeleteNote = (event) => {
+   onDeleteNote = (event) => {
     console.log ("note click noticed")
     this.setState({noteSelection: event.target.value})
     const newNotes = 
@@ -49,17 +36,19 @@ export default class App extends Component {
 
 
   render(){
-    // let folderIdPath = this.state.folders.map((folder) => {
-    //   return `/folder/:${folder.id}`
-    //})
-
-    console.log ('Here is this.state.folder - is it objects in an object?', this.state.folders)
 
     return (
+      <body>
+      <div className='pageWrap'>
       <main>
         <header className='App'>
           <h1>Noteful</h1>
         </header>
+        <div className='nav'>
+          <div>
+            <button onClick={this.props.history.goBack}>Back</button>
+          </div>
+        </div>
         <section className="sidebar">
           <Route 
           exact path='/' 
@@ -67,6 +56,7 @@ export default class App extends Component {
             <MainSidebar 
               folders = {this.state.folders} 
               onClick = {this.onFolderClick}
+              history= {this.props.history}
             />}
             />
           <Route 
@@ -75,11 +65,15 @@ export default class App extends Component {
             <FolderSidebar 
             folders = {this.state.folders}
             onClick = {this.onFolderClick}
+            history={this.props.history}
             />}
            />
-          <Route path={`/note/:id`}  
+          <Route path= '/note/:id' 
             render = {() =>
-              <NoteSidebar/>} />
+              <NoteSidebar/>}
+              folders = {this.state.folders}
+              onClick = {this.onFolderClick}
+              history={this.props.history} />
         </section>
         <section className="main">
           <Route 
@@ -88,24 +82,33 @@ export default class App extends Component {
             <MainMain 
               notes= {this.state.notes}
               onClick = {this.onDeleteNote}
+              history={this.props.history} 
              />}
            />
           <Route path= '/folder/:id'
             render={(props) => 
-            <FolderMain {...props} 
-            notes={this.state.notes} 
-            onClick = {this.onDeleteNote}/>}
+            <FolderMain 
+              {...props} 
+              notes={this.state.notes} 
+              onClick = {this.onDeleteNote}
+              history={this.props.history} />}
            />
           <Route 
-            path={`/note/:id`} 
+            path= '/note/:id' 
             render={(props) =>
             <NoteMain 
+              {...props} 
               notes= {this.state.notes}
+              onClick = {this.onDeleteNote}
+              history={this.props.history} 
             />}
            />
         </section>
       </main>
+      </div>
+      </body>
     )
   }
   
 }
+export default withRouter(App);
