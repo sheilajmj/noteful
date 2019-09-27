@@ -11,6 +11,7 @@ import './dummy-store'
 import dummyStore from './dummy-store';
 import './sidebar.css';
 import './index.css';
+import NoteContext from './NoteContext'
 
 class App extends Component {
   constructor(props) {
@@ -18,97 +19,131 @@ class App extends Component {
     this.state = {
       folders: dummyStore.folders,
       notes: dummyStore.notes,
-      folderSelection: " ",
-      noteSelection: " ",
     }
   }
 
 
-   onDeleteNote = (event) => {
-    console.log ("note click noticed")
-    this.setState({noteSelection: event.target.value})
-    const newNotes = 
-      this.state.notes.filter(function (item){
-        return item.id !== event.target.value
-      })
-    this.setState({notes: newNotes})  
+  setFolders = folders => {
+    this.setState({
+      folders: [folders],
+      error: null,
+    })
   }
 
+  setNotes = notes => {
+    this.setState({
+      notes: [notes],
+      error: null,
+    })
+  }
 
-  render(){
+  deleteNote = noteId => {
+    const newNotes = this.state.notes.filter(note =>
+      note.id !== noteId
+    )
+    this.setState({
+      note: newNotes
+    })
+  }
+
+  //  onDeleteNote = (event) => {
+  //   console.log ("note click noticed")
+  //   this.setState({noteSelection: event.target.value})
+  //   const newNotes = 
+  //     this.state.notes.filter(function (item){
+  //       return item.id !== event.target.value
+  //     })
+  //   this.setState({notes: newNotes})  
+  // }
+
+  componentDidMount(){
+    fetch('http://localhost:9090/folders', {
+      method: 'GET',
+      // headers: {
+      //   'content-type': 'application/json',
+      //   'Authorization': `Bearer ${config.API_KEY}`
+      // }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .then(this.setFolders)
+      .catch(error => this.setState({ error }))
+ 
+      fetch('http://localhost:9090/notes', {
+        method: 'GET',
+        // headers: {
+        //   'content-type': 'application/json',
+        //   'Authorization': `Bearer ${config.API_KEY}`
+        // }
+      })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(res.status)
+          }
+          return res.json()
+        })
+        .then(this.setNotes)
+        .catch(error => this.setState({ error }))
+    }
+    
+  render(){    
+    const contextValue = {
+      notes: this.state.notes,
+      folders: this.state.folders,
+      history: this.props.history,
+      deleteNote: this.deleteNote,
+    }
 
     return (
-      <body>
-      <div className='pageWrap'>
-      <main>
-        <header className='App'>
-          <h1>Noteful</h1>
-        </header>
-        <div className='nav'>
-          <div>
-            <button onClick={this.props.history.goBack}>Back</button>
+      <div>
+        <div className='pageWrap'>
+        <main>
+          <header className='App'>
+            <h1>Noteful</h1>
+          </header>
+          <div className='nav'>
+            <div>
+              <button onClick={this.props.history.goBack}>Back</button>
+            </div>
           </div>
-        </div>
-        <section className="sidebar">
-          <Route 
-          exact path='/' 
-          render = {() =>
-            <MainSidebar 
-              folders = {this.state.folders} 
-              onClick = {this.onFolderClick}
-              history= {this.props.history}
-            />}
-            />
-          <Route 
-          path= '/folder/:id'
-          render = {() => 
-            <FolderSidebar 
-            folders = {this.state.folders}
-            onClick = {this.onFolderClick}
-            history={this.props.history}
-            />}
-           />
-          <Route path= '/note/:id' 
-            render = {() =>
-              <NoteSidebar/>}
-              folders = {this.state.folders}
-              onClick = {this.onFolderClick}
-              history={this.props.history} />
-        </section>
-        <section className="main">
-          <Route 
+          <NoteContext.Provider value={contextValue}>
+          <section className="sidebar">
+            <Route 
             exact path='/' 
-            render={(props) =>
-            <MainMain 
-              notes= {this.state.notes}
-              onClick = {this.onDeleteNote}
-              history={this.props.history} 
-             />}
-           />
-          <Route path= '/folder/:id'
-            render={(props) => 
-            <FolderMain 
-              {...props} 
-              notes={this.state.notes} 
-              onClick = {this.onDeleteNote}
-              history={this.props.history} />}
-           />
-          <Route 
-            path= '/note/:id' 
-            render={(props) =>
-            <NoteMain 
-              {...props} 
-              notes= {this.state.notes}
-              onClick = {this.onDeleteNote}
-              history={this.props.history} 
-            />}
-           />
-        </section>
-      </main>
+            component= {MainSidebar} 
+            />
+            <Route 
+            path= '/folder/:id'
+            component= {FolderSidebar}
+            />
+            <Route 
+              path= '/note/:id' 
+              component= {NoteSidebar}
+            />
+          </section>
+          <section className="main">
+            <Route 
+              exact path='/' 
+              component= {MainMain}
+            />
+            <Route path= '/folder/:id'
+            component= {FolderMain} 
+            />
+            <Route 
+              path= '/note/:id' 
+              component= {NoteMain}
+            />
+          </section>
+          </NoteContext.Provider>
+        </main>
+        </div>
       </div>
-      </body>
     )
   }
-  
-}
+}  
+
 export default withRouter(App);
