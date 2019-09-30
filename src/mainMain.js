@@ -6,11 +6,15 @@ class MainMain extends Component {
   static  contextType = NoteContext;
   render(){
     const noteComponents = this.context.notes.map((item) => {
+      const noteComponentsMapped = item.map((item)=> {
+    console.log ("this is an item", item)
       return <Note item = {item}/>
   })
-  
+  return noteComponentsMapped
+})
+
     return (
-        <section className="folders">
+        <section className="notes">
            {noteComponents}
         </section>
     )

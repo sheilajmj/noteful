@@ -6,10 +6,14 @@ class FolderSidebar extends Component {
   static  contextType = NoteContext;
   render(){
     const folderComponents = this.context.folders.map((folder) => {
-      return <Folder  
-      folder = {folder}
+      const folderComponentsMapped = folder.map((folder) => {
+        console.log ('this is folder', folder)
+        return <Folder  
+        folder = {folder} 
        />
     })
+    return folderComponentsMapped
+  })
 
   return (
     <section className= 'folderSelection'>
@@ -17,9 +21,8 @@ class FolderSidebar extends Component {
     </section>
     )
   }
+};
   
-}
-
   
 
 export default FolderSidebar;

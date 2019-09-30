@@ -7,8 +7,6 @@ import NoteSidebar from './noteSidebar'
 import MainMain from './mainMain'
 import FolderMain from './folderMain'
 import NoteMain from './noteMain'
-import './dummy-store'
-import dummyStore from './dummy-store';
 import './sidebar.css';
 import './index.css';
 import NoteContext from './NoteContext'
@@ -17,8 +15,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      folders: dummyStore.folders,
-      notes: dummyStore.notes,
+      folders: [ ],
+      notes: [ ],
     }
   }
 
@@ -46,23 +44,15 @@ class App extends Component {
     })
   }
 
-  //  onDeleteNote = (event) => {
-  //   console.log ("note click noticed")
-  //   this.setState({noteSelection: event.target.value})
-  //   const newNotes = 
-  //     this.state.notes.filter(function (item){
-  //       return item.id !== event.target.value
-  //     })
-  //   this.setState({notes: newNotes})  
-  // }
-
   componentDidMount(){
+    
     fetch('http://localhost:9090/folders', {
       method: 'GET',
-      // headers: {
-      //   'content-type': 'application/json',
-      //   'Authorization': `Bearer ${config.API_KEY}`
-      // }
+      headers: {
+      'Accept': 'application/json',
+        'content-type': 'application/json',
+      
+      },
     })
       .then(res => {
         if (!res.ok) {
@@ -70,15 +60,20 @@ class App extends Component {
         }
         return res.json()
       })
-      .then(this.setFolders)
+      .then((folders) => {
+        this.setState({
+          folders: [folders],
+          error: null,
+        })
+      })
       .catch(error => this.setState({ error }))
  
       fetch('http://localhost:9090/notes', {
         method: 'GET',
-        // headers: {
-        //   'content-type': 'application/json',
-        //   'Authorization': `Bearer ${config.API_KEY}`
-        // }
+        headers: {
+          'Accept': 'application/json',
+          'content-type': 'application/json'          
+        }
       })
         .then(res => {
           if (!res.ok) {
@@ -86,11 +81,18 @@ class App extends Component {
           }
           return res.json()
         })
-        .then(this.setNotes)
+        .then((notes) => {
+          this.setState({
+            notes: [notes],
+            error: null,
+          })
+        })
+
         .catch(error => this.setState({ error }))
     }
-    
+  
   render(){    
+    
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
