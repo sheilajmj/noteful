@@ -5,22 +5,19 @@ import NoteContext from './NoteContext'
 class NoteSidebar extends Component {
   static  contextType = NoteContext;
   render(){
-    const folderComponents = this.context.folders.map((folder) => {
-      const newFolder = folder.filter(folder => folder.id === this.props.match.params.id)
-      console.log ("this is new folder", newFolder)
-      const folderComponentsMapped = newFolder.map((folder) => {
-        if (folder.id === this.props.match.params.id){
-        return <Folder  
-        folder = {folder} 
-       />
-      }
-    })
-    return folderComponentsMapped
-  })
-  
+    const folders = this.context.folders
+    const notes = this.context.notes 
+    const note = notes.find(note => note.id === this.props.match.params.id)
+    if (!note){
+      return <div>Failed url error</div>
+    }
+
+    const folderIdOfNote = note.folderId
+  const folder = folders.find(folder => folder.id === folderIdOfNote)
+
   return (
     <section className= 'folderSelection'>
-      {folderComponents}
+      {folder.name}
     </section>
     )
   }

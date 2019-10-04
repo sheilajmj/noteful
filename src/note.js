@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import NoteContext from './NoteContext'
 
 function deleteNoteRequest(noteId, callback) {
-    fetch('http://localhost:9090//notes/'+ noteId, {
+    fetch('http://localhost:9090/notes/'+ noteId, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -31,21 +31,23 @@ function deleteNoteRequest(noteId, callback) {
     }
 
 class Note extends Component {
+  static  contextType = NoteContext;
    render(){
-    const item = this.props.item
-    console.log ('this is the note item', this.props.item)
+    const noteItem = this.props.item
+
     return (
       <NoteContext.Consumer>
       {(context) => (
-        <section className="note" id = {item.id} key = {item.id}> 
-          <Link to={`/note/${item.id}`}><h2> {item.name} </h2></Link>
-            <p>{item.content}</p>
-            <h3>{item.modified}</h3>
+        <section className="note" id = {noteItem.id} key = {noteItem.id}> 
+          <Link to={`/note/${noteItem.id}`}><h2> {noteItem.name} </h2></Link>
+            <p>{noteItem.content}</p>
+            <h3>{noteItem.modified}</h3>
            
-            <button type="button" value = {item.id}  onClick={() => {
-                deleteNoteRequest(
-                  item.id,
-                  context.deleteNote)}}> Delete Note</button>
+            <button type="button" value = {noteItem.id}  onClick={() => {
+                deleteNoteRequest(noteItem.id, this.context.deleteNote)
+                }
+                }
+            > Delete Note</button>
         </section>
       )}
       </NoteContext.Consumer>

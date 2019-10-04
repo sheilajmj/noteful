@@ -15,8 +15,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      folders: [ ],
-      notes: [ ],
+      folders: 'loading',
+      notes: 'loading',
     }
   }
 
@@ -30,17 +30,21 @@ class App extends Component {
 
   setNotes = notes => {
     this.setState({
-      notes: [notes],
+      notes: notes,
       error: null,
     })
   }
 
   deleteNote = noteId => {
-    const newNotes = this.state.notes.filter(note =>
-      note.id !== noteId
-    )
+    if (this.state.notes === 'loading'){
+      throw new Error('tried to delete a note while notes are loading')
+    }
+    const notes = this.state.notes;
+    const newNoteList = notes.filter(note =>
+      note.id !== noteId)
+    console.log('this is new NoteList', newNoteList)
     this.setState({
-      note: newNotes
+      notes: newNoteList
     })
   }
 
@@ -62,7 +66,7 @@ class App extends Component {
       })
       .then((folders) => {
         this.setState({
-          folders: [folders],
+          folders: folders,
           error: null,
         })
       })
@@ -83,7 +87,7 @@ class App extends Component {
         })
         .then((notes) => {
           this.setState({
-            notes: [notes],
+            notes: notes,
             error: null,
           })
         })
@@ -92,7 +96,12 @@ class App extends Component {
     }
   
   render(){    
-    
+    if (this.state.notes === 'loading' || this.state.folders === 'loading'){
+      return (
+        <div>Oops nothing here...</div>
+      )
+    }
+
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
@@ -100,6 +109,7 @@ class App extends Component {
       deleteNote: this.deleteNote,
     }
 
+    
     return (
       <div>
         <div className='pageWrap'>

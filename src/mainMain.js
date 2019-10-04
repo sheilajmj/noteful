@@ -5,17 +5,14 @@ import NoteContext from './NoteContext'
 class MainMain extends Component {
   static  contextType = NoteContext;
   render(){
-    const noteComponents = this.context.notes.map((item) => {
-      const noteComponentsMapped = item.map((item)=> {
-    console.log ("this is an item", item)
+    const notes = this.context.notes
+    const noteItems= notes.map((item)=> {
       return <Note item = {item}/>
   })
-  return noteComponentsMapped
-})
-
+  
     return (
         <section className="notes">
-           {noteComponents}
+           {noteItems}
         </section>
     )
   }

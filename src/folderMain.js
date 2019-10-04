@@ -6,20 +6,16 @@ class FolderMain extends Component {
   static  contextType = NoteContext;
 
   render(){
-    let noteComponents 
-    const notesMapped = this.context.notes.map((note) => {
-      const newNotes =   note.filter(note => note.folderId === this.props.match.params.id)
-      noteComponents =  newNotes.map((note) => {
-        return <Note item = {note} /> 
-      })
-      return noteComponents
-    })   
-    console.log("foldermain note components", noteComponents)
-
-
+  
+    const notes= this.context.notes
+    const newNotes =   notes.filter(note => note.folderId === this.props.match.params.id)
+    const noteComponents =  newNotes.map((note) => {
+      return <Note item = {note} /> 
+    })
+  
     return (        
         <section className="notes">
-          {notesMapped}
+          {noteComponents}
         </section>
     )
   }
