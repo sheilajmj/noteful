@@ -31,3 +31,9 @@ code {
   height: 100%;
   margin-right: 15px;
 }
+
+.addFolder{
+  display: block;
+  width: 15%;
+  height: auto;
+}

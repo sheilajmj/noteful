@@ -10,6 +10,7 @@ import NoteMain from './noteMain'
 import './sidebar.css';
 import './index.css';
 import NoteContext from './NoteContext'
+import AddFolder from './AddFolder'
 
 class App extends Component {
   constructor(props) {
@@ -40,13 +41,17 @@ class App extends Component {
       throw new Error('tried to delete a note while notes are loading')
     }
     const notes = this.state.notes;
-    const newNoteList = notes.filter(note =>
-      note.id !== noteId)
+    const newNoteList = notes.filter(note => note.id !== noteId)
     console.log('this is new NoteList', newNoteList)
     this.setState({
       notes: newNoteList
     })
   }
+
+  handleAddFolder = folder => {
+    this.setState({folders: folder});
+  }
+
 
   componentDidMount(){
     
@@ -107,6 +112,7 @@ class App extends Component {
       folders: this.state.folders,
       history: this.props.history,
       deleteNote: this.deleteNote,
+      addFolder: this.addFolder,
     }
 
     
@@ -135,6 +141,10 @@ class App extends Component {
             <Route 
               path= '/note/:id' 
               component= {NoteSidebar}
+            />
+            <Route 
+              path= '/'
+              component= {AddFolder}
             />
           </section>
           <section className="main">
