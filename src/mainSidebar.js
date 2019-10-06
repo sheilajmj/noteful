@@ -6,6 +6,7 @@ class MainSidebar extends Component {
   static  contextType = NoteContext;
   render(){
     const folderComponents = this.context.folders
+    console.log ('these are folderCOmpnenets in main sidebar', folderComponents)
     const folderComponentsMapped = folderComponents.map((folder) =>{
         console.log ('this is folder', folder)
         return <Folder  

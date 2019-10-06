@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import MainSidebar from './mainSidebar'
-import FolderSidebar from './folderSidebar'
-import NoteSidebar from './noteSidebar'
-import MainMain from './mainMain'
-import FolderMain from './folderMain'
-import NoteMain from './noteMain'
+import MainSidebar from './mainSidebar';
+import FolderSidebar from './folderSidebar';
+import NoteSidebar from './noteSidebar';
+import MainMain from './mainMain';
+import FolderMain from './folderMain';
+import NoteMain from './noteMain';
 import './sidebar.css';
 import './index.css';
-import NoteContext from './NoteContext'
-import AddFolder from './AddFolder'
+import NoteContext from './NoteContext';
+import AddFolder from './AddFolder';
+import AddNote from './AddNote';
 
 class App extends Component {
   constructor(props) {
@@ -42,19 +43,31 @@ class App extends Component {
     }
     const notes = this.state.notes;
     const newNoteList = notes.filter(note => note.id !== noteId)
-    console.log('this is new NoteList', newNoteList)
     this.setState({
       notes: newNoteList
     })
   }
 
   handleAddFolder = folder => {
-    this.setState({folders: folder});
+    const newFolderArray = this.state.folders.concat(folder)
+    this.setState({folders:newFolderArray})
+   
   }
 
+  handleAddNote = note => {
+    console.log ('handleAddNote is running', note)
+    console.log ("this is this.state.notes", this.state.notes)
+    const newNoteArray = this.state.notes.concat(note)
+    console.log ('this is newNoteArray', newNoteArray)
+    this.setState({
+        notes:newNoteArray
+      })
+      console.log ('this is state', this.state);    
+    }
+  
+   
 
-  componentDidMount(){
-    
+  componentDidMount(){    
     fetch('http://localhost:9090/folders', {
       method: 'GET',
       headers: {
@@ -112,7 +125,8 @@ class App extends Component {
       folders: this.state.folders,
       history: this.props.history,
       deleteNote: this.deleteNote,
-      addFolder: this.addFolder,
+      handleAddFolder: this.handleAddFolder,
+      handleAddNote: this.handleAddNote,
     }
 
     
@@ -148,6 +162,10 @@ class App extends Component {
             />
           </section>
           <section className="main">
+            <Route 
+              path= '/'
+              component= {AddNote}
+            />
             <Route 
               exact path='/' 
               component= {MainMain}
