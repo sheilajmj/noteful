@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NoteContext from './NoteContext';
-import ValidationErrors from './validationError';
 
 class AddNote extends Component {
   static contextType = NoteContext;
@@ -65,45 +64,6 @@ class AddNote extends Component {
       return <option value= {folder.name} >{folder.name}</option>
     })
 
-    function updateNameInput(name){
-      nameInput = name
-      nameInputTouched = true
-      console.log('this is nameInput',nameInput)
-    }
-    function updateContentInput(content){
-      contentInput = content
-      contentInputTouched = true
-      console.log(contentInput)
-    }
-
-    let nameInput= "loading"
-    let nameInputTouched = false
-    let contentInput= "loading"
-    let contentInputTouched = false
-
-    
-    const nameInputError= validateNameInput(nameInput)
-    console.log ('this is nameinputerror', nameInputError)
-    const contentInputError= validateContentInput(contentInput)
- 
-
-    function validateNameInput(name){
-      console.log ('this is name in the validateNameInput function', name )
-      if (name.length === 0){
-        return "A new note must have a name"
-      }
-      else if (name.length > 72){
-        return "The note name must be less than 72 characters"
-      }
-    }
-  
-    function validateContentInput(content){
-      if (content.length === 0){
-        return "A new note must have content"
-      }
-    }
-  
-    
     return (
       <section className="addNote">
         <form className="registration">Add New Note</form>
@@ -113,23 +73,16 @@ class AddNote extends Component {
           name="newNoteName"
           id="newNoteName"
           placeholder="new note name"
-          onChange= {e => updateNameInput(e.target.value)}
-        />
-        {this.nameInputTouched && (
-          <ValidationErrors message = {nameInputError} />
-        )}
+          required
+          />
         <label>Note Content</label>
         <input
           type="text"
           name="newNoteContent"
           id="newNoteContent"
           placeholder="new note content"
-          onChange= {e => updateNameInput(e.target.value)}
-        />
-        {this.contentInputTouched && (
-          <ValidationErrors message = {contentInputError} />
-        )}
-
+          required
+          />
         <label>Add note to which folder?</label>
         <select
           type="Selection"
@@ -144,10 +97,6 @@ class AddNote extends Component {
           for='newNote' 
           type="submit" 
           onClick={e => this.handleSubmit(e)}
-          disabled={
-           validateNameInput(nameInput) ||
-           validateContentInput(contentInput)
-          }
         >
           Add Note
         </button>
