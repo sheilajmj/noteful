@@ -38,12 +38,8 @@ class AddFolder extends Component {
   }
 
   validateNameInput(){
-    
+
   }
-
-
-
-
 
 
   render() {
@@ -57,6 +53,7 @@ class AddFolder extends Component {
           name="newFolderName"
           id="newFolderName"
           placeholder="new folder name"
+          required
         />
         <button for='newFolderName' type="submit" onClick={e => this.handleSubmit(e)}>Add Folder</button>
       </section>
@@ -66,40 +63,5 @@ class AddFolder extends Component {
 }
 
 
-// handleAddNewFolder(){
-//   const folderValue = document.getElementById("newFolderName").value
-//   const folder = ((folder => { this.setState({ id: uid(folder), name: folderValue }) }))
-//   const url = 'http://localhost:9090/folders'
-//   const options = {
-//     method: 'POST',
-//     body: folder,
-//     headers: {
-//       "Content-Type": "application/json",
-//     }
-//   };
-//   fetch(url, options)
-//     .then(res => {
-//       if (!res.ok) {
-//         throw new Error('Something went wrong, please try again later');
-//       }
-//       return res.json();
-//     })
-//     .then(data => {
-//       this.setState({
-//         name: "",
-//         id: "",
-//       })
-//       this.context.handleAddFolder(folder)
-//     })
-//     .catch(err => {
-//       this.setState({
-//         error: err.message
-//       });
-//     });
-// }
-
-
-
-//
 
 export default AddFolder;
