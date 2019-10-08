@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import { uid } from 'react-uid';
 import NoteContext from './NoteContext'
 
 class AddFolder extends Component {
   static  contextType = NoteContext;
-  constructor(props) {
-    super(props);
-    this.state = {
-      addFolder: "",
-    };
-  }
-
 
   handleSubmit(event) {
     event.preventDefault();
     const newFolderName = document.getElementById("newFolderName").value
-    console.log("this is newFolderName", newFolderName)
     this.handleAddNewFolder(newFolderName)
   };
 
@@ -46,6 +37,9 @@ class AddFolder extends Component {
       });
   }
 
+  validateNameInput(){
+    
+  }
 
 
 
