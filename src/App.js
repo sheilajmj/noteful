@@ -32,7 +32,6 @@ class App extends Component {
       notes: notes,
       error: null,
     })
-    console.log("this is set Note updated notes", this.state)
   }
 
   deleteNote = noteId => {
@@ -101,8 +100,6 @@ class App extends Component {
         <div>Oops nothing here...</div>
       )
     }
-
-    console.log('this is state.notes within render', this.state.notes)
 
     const contextValue = {
       notes: this.state.notes,

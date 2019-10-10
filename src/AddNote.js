@@ -16,10 +16,11 @@ class AddNote extends Component {
       }
       return getId
     });
+    const modifiedOn = document.lastModified
     const newNoteFolderId = newNoteFolderInfo.id
-    const newNoteObject = { "id": this.context.notes.length + newNoteName, "name": newNoteName, "modified": "", "folderId": newNoteFolderId, "content": newNoteContent }
-
+    const newNoteObject = { "id": this.context.notes.length + newNoteName, "name": newNoteName, "modified": modifiedOn, "folderId": newNoteFolderId, "content": newNoteContent }
     this.handleAddNewNote(newNoteObject)
+    document.getElementById("newNoteForm").reset();
   };
 
 
@@ -62,7 +63,7 @@ class AddNote extends Component {
 
     return (
       <section className="addNote">
-        <form className="newNoteForm">
+        <form className="newNoteForm" id= "newNoteForm">
           <h2>Add New Note</h2>
           <label>Note Name</label>
           <input

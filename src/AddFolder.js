@@ -8,7 +8,10 @@ class AddFolder extends Component {
     event.preventDefault();
     const newFolderName = document.getElementById("newFolderName").value
     this.handleAddNewFolder(newFolderName)
+    document.getElementById("folderForm").reset();
   };
+
+
 
   handleAddNewFolder(folder) {
     const url = 'http://localhost:9090/folders'
@@ -36,16 +39,12 @@ class AddFolder extends Component {
       });
   }
 
-  validateNameInput(){
-
-  }
-
 
   render() {
 
     return (
       <section className="addFolder">
-        <form className="folderForm"></form>
+        <form className="folderForm" id= "folderForm">
         <label>Add New Folder</label>
         <input
           type="text"
@@ -55,6 +54,7 @@ class AddFolder extends Component {
           required
         />
         <button htmlFor='newFolderName' type="submit" onClick={e => this.handleSubmit(e)}>Add Folder</button>
+        </form>
       </section>
 
     )
