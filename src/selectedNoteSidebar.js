@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Folder from './folder'
-import NoteContext from './NoteContext'
+import NoteContext from './NoteContext';
+import PropTypes from 'prop-types';
+import AddFolder from './AddFolder';
+import { withRouter } from 'react-router-dom';
 
-class NoteSidebar extends Component {
+class SelectedNoteSidebar extends Component {
   static  contextType = NoteContext;
   render(){
     const folders = this.context.folders
@@ -12,18 +14,26 @@ class NoteSidebar extends Component {
       return <div>Failed url error</div>
     }
 
-    const folderIdOfNote = note.folderId
+  const folderIdOfNote = note.folderId
   const folder = folders.find(folder => folder.id === folderIdOfNote)
 
   return (
     <section className= 'folderSelection'>
       {folder.name}
+      <AddFolder />
     </section>
     )
+
   }
 
+}
+SelectedNoteSidebar.propTypes = {
+    requiredObjectWithStrictShape: PropTypes.exact({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  })
 }
 
   
 
-export default NoteSidebar;
+export default withRouter(SelectedNoteSidebar);

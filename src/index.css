@@ -8,18 +8,25 @@ body {
   box-sizing: border-box;
 }
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-.main {
+.viewWrap {
   display: inline-flex;
-  width: 60%;
+  width: 80%;
   height: 100%;
-  margin-left: 25px;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 10%
 }
 
+.backButton{
+  padding-left: 15%;
+
+}
 .pageWrap {
  display: flex;
 }
@@ -27,18 +34,28 @@ code {
 .sidebar {
   display: inline-flex;
   background-color: gainsboro;
-  width: 15%;
+  width: 23%;
   height: 100%;
   margin-right: 15px;
+  padding: 10px;
 }
 
 .addFolder{
   display: block;
-  width: 15%;
+  width: auto;
   height: auto;
 }
 .addNote{
+  align-content: right;
+  background-color: snow;
   display: block;
-  width: 15%;
+  width: 100%;
   height: auto;
+}
+.newNoteForm{
+  text-align:right;
+}
+
+.name{
+  text-align: center;
 }

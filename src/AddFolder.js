@@ -11,7 +11,6 @@ class AddFolder extends Component {
   };
 
   handleAddNewFolder(folder) {
-    console.log ("this is folder", folder);
     const url = 'http://localhost:9090/folders'
     const options = {
       method: "POST",
@@ -46,7 +45,7 @@ class AddFolder extends Component {
 
     return (
       <section className="addFolder">
-        <form className="registration"></form>
+        <form className="folderForm"></form>
         <label>Add New Folder</label>
         <input
           type="text"
@@ -55,7 +54,7 @@ class AddFolder extends Component {
           placeholder="new folder name"
           required
         />
-        <button for='newFolderName' type="submit" onClick={e => this.handleSubmit(e)}>Add Folder</button>
+        <button htmlFor='newFolderName' type="submit" onClick={e => this.handleSubmit(e)}>Add Folder</button>
       </section>
 
     )

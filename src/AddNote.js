@@ -11,16 +11,14 @@ class AddNote extends Component {
     const newNoteFolder = document.getElementById("newNoteFolder").value;
     let getId = ""
     const newNoteFolderInfo = this.context.folders.find((folders) => {
-      if (folders.name === newNoteFolder){ 
-       getId= (folders.id)
+      if (folders.name === newNoteFolder) {
+        getId = (folders.id)
       }
       return getId
     });
     const newNoteFolderId = newNoteFolderInfo.id
-    console.log ("this is the new note folder id?", newNoteFolderId)  
-    const newNoteObject = `{"id": "", "name": "${newNoteName}", "modified": "", "folderId": "${newNoteFolderId}", "content": "${newNoteContent}"}`
-    console.log ('this is newNoteObject', newNoteObject)
-   
+    const newNoteObject = { "id": this.context.notes.length + newNoteName, "name": newNoteName, "modified": "", "folderId": newNoteFolderId, "content": newNoteContent }
+
     this.handleAddNewNote(newNoteObject)
   };
 
@@ -31,7 +29,7 @@ class AddNote extends Component {
     const url = 'http://localhost:9090/notes'
     const options = {
       method: "POST",
-      body: note,    
+      body: JSON.stringify(note),
       headers: {
         "Content-Type": "application/json",
       }
@@ -58,48 +56,51 @@ class AddNote extends Component {
 
   render() {
     this.folders = this.context.folders
-    console.log('context folders in add note', this.context.folders)
     this.folderListNames = this.folders.map((folder) => {
-      console.log ('this is the folderListNames in AddNote', folder.name)
-      return <option value= {folder.name} >{folder.name}</option>
+      return <option value={folder.name} key={folder.id} >{folder.name}</option>
     })
 
     return (
       <section className="addNote">
-        <form className="registration">Add New Note</form>
-        <label>Note Name</label>
-        <input
-          type="text"
-          name="newNoteName"
-          id="newNoteName"
-          placeholder="new note name"
-          required
+        <form className="newNoteForm">
+          <h2>Add New Note</h2>
+          <label>Note Name</label>
+          <input
+            type="text"
+            name="newNoteName"
+            id="newNoteName"
+            placeholder="new note name"
+            required
           />
-        <label>Note Content</label>
-        <input
-          type="text"
-          name="newNoteContent"
-          id="newNoteContent"
-          placeholder="new note content"
-          required
+          <br />
+          <label>Note Content</label>
+          <input
+            type="text"
+            name="newNoteContent"
+            id="newNoteContent"
+            placeholder="new note content"
+            required
           />
-        <label>Add note to which folder?</label>
-        <select
-          type="Selection"
-          name="newNoteFolder"
-          id="newNoteFolder"
-          placeholder="new note folder"
-        >
-        {this.folderListNames}
-        </select>
-        <button 
-          className="addNoteButton"
-          for='newNote' 
-          type="submit" 
-          onClick={e => this.handleSubmit(e)}
-        >
-          Add Note
+          <br />
+          <label>Add note to which folder?</label>
+          <select
+            type="Selection"
+            name="newNoteFolder"
+            id="newNoteFolder"
+            placeholder="new note folder"
+          >
+            {this.folderListNames}
+          </select>
+          <br />
+          <button
+            className="addNoteButton"
+            htmlFor='newNote'
+            type="submit"
+            onClick={e => this.handleSubmit(e)}
+          >
+            Add Note
         </button>
+        </form>
       </section>
 
     )

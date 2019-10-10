@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import MainSidebar from './mainSidebar';
-import FolderSidebar from './folderSidebar';
-import NoteSidebar from './noteSidebar';
-import MainMain from './mainMain';
-import FolderMain from './folderMain';
-import NoteMain from './noteMain';
 import './sidebar.css';
 import './index.css';
 import NoteContext from './NoteContext';
-import AddFolder from './AddFolder';
-import AddNote from './AddNote';
+import AllView from './allView';
+import FolderView from './folderView';
+import NoteView from './noteView';
+import ErrorBoundary from './errorBoundary';
 
 class App extends Component {
   constructor(props) {
@@ -19,21 +15,19 @@ class App extends Component {
     this.state = {
       folders: 'loading',
       notes: 'loading',
+      hasError: 'false',
     }
   }
 
 
   setFolders = folders => {
-    console.log ('set folders ran')
     this.setState({
       folders: folders,
       error: null,
     })
-    console.log("this is set Folders updated state", this.state)
   }
 
   setNotes = notes => {
-    console.log ('set notes ran')
     this.setState({
       notes: notes,
       error: null,
@@ -95,7 +89,7 @@ class App extends Component {
         return res.json()
       })
       .then((notes) => {
-        this.setNotes(notes); 
+        this.setNotes(notes);
       })
 
       .catch(error => this.setState({ error }))
@@ -124,50 +118,35 @@ class App extends Component {
       <div>
         <div className='pageWrap'>
           <main>
-            <header className='App'>
+            <header className='name'>
               <h1>Noteful</h1>
             </header>
-            <div className='nav'>
+            <div className='backButton'>
               <div>
                 <button onClick={this.props.history.goBack}>Back</button>
               </div>
             </div>
             <NoteContext.Provider value={contextValue}>
-              <section className="sidebar">
-                <Route
-                  exact path='/'
-                  component={MainSidebar}
-                />
-                <Route
-                  path='/folder/:id'
-                  component={FolderSidebar}
-                />
-                <Route
-                  path='/note/:id'
-                  component={NoteSidebar}
-                />
-                <Route
-                  path='/'
-                  component={AddFolder}
-                />
-              </section>
-              <section className="main">
-                <Route
-                  path='/'
-                  component={AddNote}
-                />
-                <Route
-                  exact path='/'
-                  component={MainMain}
-                />
-                <Route path='/folder/:id'
-                  component={FolderMain}
-                />
-                <Route
-                  path='/note/:id'
-                  component={NoteMain}
-                />
-              </section>
+              <div className="view">
+                <ErrorBoundary>
+                  <Route
+                    exact path='/'
+                    component={AllView}
+                  />
+                </ErrorBoundary>
+                <ErrorBoundary>
+                  <Route
+                    path='/folder/:id'
+                    component={FolderView}
+                  />
+                </ErrorBoundary>
+                <ErrorBoundary>
+                  <Route
+                    path='/note/:id'
+                    component={NoteView}
+                  />
+                </ErrorBoundary>
+              </div>
             </NoteContext.Provider>
           </main>
         </div>

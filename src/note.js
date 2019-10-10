@@ -38,7 +38,7 @@ class Note extends Component {
     return (
       <NoteContext.Consumer>
       {(context) => (
-        <section className="note" id = {noteItem.id} key = {noteItem.id}> 
+        <section className="note" id = {noteItem.id}> 
           <Link to={`/note/${noteItem.id}`}><h2> {noteItem.name} </h2></Link>
             <p>{noteItem.content}</p>
             <h3>{noteItem.modified}</h3>
