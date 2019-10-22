@@ -1,40 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
 }
 
+.hide{
+  display:none;
+}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+header {
+  width: 100%;
+  background-color:#0b1b32;
+  color: white;
+  display: inline-block;
+  height: 100px;
 }
 
 .viewWrap {
   display: inline-flex;
-  width: 80%;
+  width: 100%;
   height: 100%;
   padding-right: 5%;
   padding-left: 5%;
   padding-bottom: 10%
 }
 
+
+
+nav{
+  width: 100%;
+  padding-left: 15px;
+  background-color: #0b1b32;
+  border: none;
+}
+
+body{  
+  background-color: #0b1b32;
+  color: lightgray;
+}
+
+
+
 .backButton{
-  padding-left: 15%;
+  
+  background-color: lightgray;
+  width: 75px;
+  height: 75px;
+  font-size: 16px;
+  border-radius: 50px;
 
 }
-.pageWrap {
- display: flex;
+
+.addFolderButtonWrap{
+  align-content: center;
 }
 
+button:hover{
+  background-color: green;
+}
+
+.addFolderButton{
+  width: 75px;
+  height: 75px;
+  font-size: 16px;
+  border-radius: 50px;
+  background-color: lightgray;
+}
 .sidebar {
   display: inline-flex;
-  background-color: gainsboro;
-  width: 23%;
+  width: 25%;
   height: 100%;
   margin-right: 15px;
   padding: 10px;
@@ -45,9 +87,18 @@ code {
   width: auto;
   height: auto;
 }
+
+a:link{
+  color: lightgray;
+  text-decoration: none;
+}
+a:visited {
+  color: lightgray;
+}
+
+
 .addNote{
   align-content: right;
-  background-color: snow;
   display: block;
   width: 100%;
   height: auto;
@@ -56,6 +107,23 @@ code {
   text-align:right;
 }
 
+.folder{
+  background-color: #030f1f;
+  padding: 15px;
+  margin: 5px;
+  color: lightgray
+}
+
+.removeFolderX{
+  display: inline-flex;
+  margin: 20px;
+}
 .name{
   text-align: center;
+}
+
+.mainSection{
+  width: 75%;
+  background-color: #04152c;
+  color: lightgray;
 }

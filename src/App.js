@@ -8,6 +8,8 @@ import AllView from './allView';
 import FolderView from './folderView';
 import NoteView from './noteView';
 import ErrorBoundary from './errorBoundary';
+import AddFolder from './AddFolder';
+import AddNote from './AddNote';
 
 class App extends Component {
   constructor(props) {
@@ -41,6 +43,15 @@ class App extends Component {
     const notes = this.state.notes;
     const newNoteList = notes.filter(note => note.id !== noteId)
     this.setNotes(newNoteList)
+  }
+
+  deleteFolder = folderId => {
+    if (this.state.folders === 'loading'){
+      throw new Error ('tried to delete a folder while folders are loading')
+    }
+    const folders = this.state.folders;
+    const newFolderList = folders.filter(folder => folder.id !== folderId)
+    this.setFolders(newFolderList);
   }
 
   handleAddFolder = folder => {
@@ -106,23 +117,22 @@ class App extends Component {
       folders: this.state.folders,
       history: this.props.history,
       deleteNote: this.deleteNote,
-      handleAddFolder: this.handleAddFolder,
+      deleteFolder: this.deleteFolder,
       handleAddNote: this.handleAddNote,
+      handleAddFolder: this.handleAddFolder,
     }
 
 
     return (
       <div>
         <div className='pageWrap'>
+          <header className='name'>
+            <h1>Noteful</h1>
+          </header>
+          <nav>
+            <button className="backButton" onClick={this.props.history.goBack}>Back</button>
+          </nav>
           <main>
-            <header className='name'>
-              <h1>Noteful</h1>
-            </header>
-            <div className='backButton'>
-              <div>
-                <button onClick={this.props.history.goBack}>Back</button>
-              </div>
-            </div>
             <NoteContext.Provider value={contextValue}>
               <div className="view">
                 <ErrorBoundary>
@@ -143,11 +153,21 @@ class App extends Component {
                     component={NoteView}
                   />
                 </ErrorBoundary>
+                <ErrorBoundary>  
+                  <Route
+                    path='/addFolder'
+                    component={AddFolder}
+                    />
+                    <Route
+                    path='/addNote'
+                    component={AddNote}
+                    />
+                </ErrorBoundary>
               </div>
             </NoteContext.Provider>
           </main>
         </div>
-      </div>
+      </div >
     )
   }
 }

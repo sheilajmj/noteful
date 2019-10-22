@@ -34,26 +34,20 @@ class Note extends Component {
   static  contextType = NoteContext;
    render(){
     const noteItem = this.props.item
-
     return (
-      <NoteContext.Consumer>
-      {(context) => (
-        <section className="note" id = {noteItem.id}> 
+        <div className="note" id = {noteItem.id}> 
           <Link to={`/note/${noteItem.id}`}><h2> {noteItem.name} </h2></Link>
-            <p>{noteItem.content}</p>
-            <h3>{noteItem.modified}</h3>
-           
+            <div className="hide" id="noteContent">{noteItem.content}</div>
+            <p className="noteModifiedDate">{noteItem.modified}</p>
             <button type="button" value = {noteItem.id}  onClick={() => {
                 deleteNoteRequest(noteItem.id, this.context.deleteNote)
                 }
                 }
             > Delete Note</button>
-        </section>
-      )}
-      </NoteContext.Consumer>
-    ) 
+        </div>
+      )} 
   }
-}
+
   
 
 

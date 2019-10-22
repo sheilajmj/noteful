@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NoteContext from './NoteContext';
 import PropTypes from 'prop-types';
-import AddFolder from './AddFolder';
+import AddFolderButton from './AddFolderButton';
 import { withRouter } from 'react-router-dom';
 
 class SelectedNoteSidebar extends Component {
@@ -20,7 +20,7 @@ class SelectedNoteSidebar extends Component {
   return (
     <section className= 'folderSelection'>
       {folder.name}
-      <AddFolder />
+      <AddFolderButton />
     </section>
     )
 

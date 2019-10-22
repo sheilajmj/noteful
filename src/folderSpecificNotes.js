@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Note from './note';
 import NoteContext from './NoteContext';
 import PropTypes from 'prop-types';
-import AddNote from './AddNote';
 import { withRouter } from 'react-router-dom';
+import AddNoteButton from './AddNoteButton';
 
 class FolderSpecificNotes extends Component {
   static  contextType = NoteContext;
@@ -20,7 +20,7 @@ class FolderSpecificNotes extends Component {
   
     return (        
         <section className="notes">
-          <AddNote />
+          <AddNoteButton />
           {noteComponents}
         </section>
     )

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Note from './note';
 import NoteContext from './NoteContext';
 import PropTypes from 'prop-types';
-import AddNote from './AddNote';
+import AddNoteButton from './AddNoteButton';
 
 class AllViewNotes extends Component {
   static contextType = NoteContext;
@@ -14,10 +14,10 @@ class AllViewNotes extends Component {
     })
 
     return (
-      <div className="notes">
-        <AddNote />
+      <section className="notes">
+        <AddNoteButton />
         {noteItems}
-      </div>
+      </section>
     )
 
 

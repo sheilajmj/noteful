@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Folder from './folder';
 import NoteContext from './NoteContext';
 import PropTypes from 'prop-types';
-import AddFolder from './AddFolder';
+import AddFolderButton from './AddFolderButton';
 
 class FolderSpecificSidebar extends Component {
   static  contextType = NoteContext;
@@ -20,7 +20,7 @@ class FolderSpecificSidebar extends Component {
   return (
     <section className= 'folderSelection'>
       {folderComponentsMapped}
-      <AddFolder />
+      <AddFolderButton />
     </section>
     )
   }

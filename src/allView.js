@@ -11,7 +11,6 @@ class AllView extends Component {
                 </section>
                 <section className="mainSection">
                     <AllViewNotes />
-
                 </section>
             </div>
         )
