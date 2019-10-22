@@ -54,7 +54,7 @@ class SelectedNote extends Component {
       });
 
       return (
-        <section className="note">
+        <section className="selectedNote">
           {noteComponentsMapped}  
           <AddNoteButton />
         </section>
