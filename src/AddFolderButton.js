@@ -3,14 +3,13 @@ import NoteContext from './NoteContext';
 import { Link } from 'react-router-dom'
 
 class AddFolderButton extends Component {
-    static  contextType = NoteContext;
-    render(){     
 
+
+    static  contextType = NoteContext;
+    render(){   
       return (
           <div className="addFolderButtonWrap">
-            <Link className="addFolderButton" type="button" to={`/addFolder`}> 
-              + Folder
-            </Link>
+            <button className="addFolderButton" onClick={((e) => {this.context.history.push('/addFolder')})}>+ <br/>Folder</button>      
           </div>
       )  
   
