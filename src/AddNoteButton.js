@@ -8,9 +8,7 @@ class AddNoteButton extends Component {
 
       return (
           <div className="addNoteButtonWrap">
-            <Link type="button" to={`/addNote`}> 
-              + Note
-            </Link>
+                    <button className="addNoteButton" onClick={((e) => {this.context.history.push('/addNote')})}>+<br/>Note</button>      
           </div>
       )  
   

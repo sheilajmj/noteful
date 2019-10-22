@@ -9,7 +9,7 @@ class AddFolderButton extends Component {
     render(){   
       return (
           <div className="addFolderButtonWrap">
-            <button className="addFolderButton" onClick={((e) => {this.context.history.push('/addFolder')})}>+ <br/>Folder</button>      
+            <button className="addFolderButton" onClick={((e) => {this.context.history.push('/addFolder')})}>+<br/>Folder</button>      
           </div>
       )  
   

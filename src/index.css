@@ -67,7 +67,7 @@ button:hover{
   background-color: green;
 }
 
-.addFolderButton{
+.addFolderButton, .addNoteButton{
   width: 75px;
   height: 75px;
   font-size: 16px;
@@ -98,13 +98,37 @@ a:visited {
 
 
 .addNote{
-  align-content: right;
+  margin-left: auto;
+  margin-right: auto;
   display: block;
-  width: 100%;
+  width: 40%;
   height: auto;
 }
+
+.addNote h2{
+  text-align: center;
+
+}
 .newNoteForm{
+  align-content: center;
   text-align:right;
+}
+
+input, select{
+  padding: 10px;
+  margin: 10px;
+}
+
+form{
+  padding: 10px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-right: 50px;
+}
+
+input:focus{
+  background-color: lightyellow;
+  border:soild darkgray 2px
 }
 
 .folder{
