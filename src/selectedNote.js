@@ -7,7 +7,7 @@ import AddNoteButton from './AddNoteButton';
 
 
 function deleteNoteRequest(noteId, callback) {
-  fetch('http://localhost:8000/api/notes/'+ noteId, {
+  fetch('https://dashboard.heroku.com/apps/frozen-ravine-41788/api/notes/'+ noteId, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json'

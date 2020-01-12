@@ -28,7 +28,7 @@ class AddFolder extends Component {
   }
 
   handleAddNewFolder(folder) {
-    const url = 'http://localhost:8000/api/folders'
+    const url = 'https://dashboard.heroku.com/apps/frozen-ravine-41788/api/folders'
     const options = {
       method: "POST",
       body: `{"folder_name": "${folder}"}`,

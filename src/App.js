@@ -66,7 +66,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8000/api/folders', {
+    fetch('https://dashboard.heroku.com/apps/frozen-ravine-41788/api/folders', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -85,7 +85,7 @@ class App extends Component {
       })
       .catch(error => this.setState({ error }))
 
-    fetch('http://localhost:8000/api/notes', {
+    fetch('https://dashboard.heroku.com/apps/frozen-ravine-41788/api/notes', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
