@@ -66,7 +66,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:9090/folders', {
+    fetch('http://localhost:8000/api/folders', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -85,7 +85,7 @@ class App extends Component {
       })
       .catch(error => this.setState({ error }))
 
-    fetch('http://localhost:9090/notes', {
+    fetch('http://localhost:8000/api/notes', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

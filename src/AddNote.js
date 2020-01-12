@@ -24,9 +24,8 @@ class AddNote extends Component {
         }
         return getId
       });
-      const modifiedOn = document.lastModified
       const newNoteFolderId = newNoteFolderInfo.id
-      const newNoteObject = { "id": this.context.notes.length + newNoteName, "name": newNoteName, "modified": modifiedOn, "folderId": newNoteFolderId, "content": newNoteContent }
+      const newNoteObject = { "note_name": newNoteName, "note_content": newNoteContent,  "folder_id": newNoteFolderId, }
       this.handleAddNewNote(newNoteObject)
       document.getElementById("newNoteForm").reset();
       let element = document.getElementById("addNoteError")
@@ -40,7 +39,7 @@ class AddNote extends Component {
 
 
   handleAddNewNote(note) {
-    const url = 'http://localhost:9090/notes'
+    const url = 'http://localhost:8000/api/notes'
     const options = {
       method: "POST",
       body: JSON.stringify(note),

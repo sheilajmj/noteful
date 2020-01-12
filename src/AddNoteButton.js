@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NoteContext from './NoteContext';
-import { Link } from 'react-router-dom'
 
 class AddNoteButton extends Component {
     static  contextType = NoteContext;

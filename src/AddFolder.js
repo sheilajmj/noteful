@@ -28,10 +28,10 @@ class AddFolder extends Component {
   }
 
   handleAddNewFolder(folder) {
-    const url = 'http://localhost:9090/folders'
+    const url = 'http://localhost:8000/api/folders'
     const options = {
       method: "POST",
-      body: `{"name": "${folder}"}`,
+      body: `{"folder_name": "${folder}"}`,
       headers: {
         "Content-Type": "application/json",
       }
