@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import NoteContext from './NoteContext'
 
 function deleteNoteRequest(noteId, callback) {
-    fetch('https://dashboard.heroku.com/apps/frozen-ravine-41788/api/notes/'+ noteId, {
+    fetch('https://frozen-ravine-41788.herokuapp.com//api/notes/'+ noteId, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
