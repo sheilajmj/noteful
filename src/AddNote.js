@@ -39,7 +39,7 @@ class AddNote extends Component {
 
 
   handleAddNewNote(note) {
-    const url = 'http://localhost:8000/api/notes'
+    const url = 'https://frozen-ravine-41788.herokuapp.com/api/notes'
     const options = {
       method: "POST",
       body: JSON.stringify(note),
