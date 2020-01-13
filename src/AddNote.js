@@ -45,7 +45,6 @@ class AddNote extends Component {
       body: JSON.stringify(note),
       headers: {
         'Authorization' : 'Bearer 1be74cfc-3579-11ea-978f-2e728ce88125',
-
         "Content-Type": "application/json",
       }
     };
