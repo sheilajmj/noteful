@@ -69,7 +69,7 @@ class App extends Component {
     fetch('https://frozen-ravine-41788.herokuapp.com/api/folders', {
       method: 'GET',
       headers: {
-        'Authorization' : 'Bearer 1be74cfc-3579-11ea-978f-2e728ce88125',
+        'Authorization' : 'Bearer' + ,
         'Accept': 'application/json',
         'content-type': 'application/json',
 
@@ -89,7 +89,7 @@ class App extends Component {
     fetch('https://frozen-ravine-41788.herokuapp.com/api/notes', {
       method: 'GET',
       headers: {
-        'Authorization' : 'Bearer 1be74cfc-3579-11ea-978f-2e728ce88125',
+        'Authorization' : 'Bearer' + ,
         'Accept': 'application/json',
         'content-type': 'application/json'
       }
@@ -108,11 +108,11 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.notes === 'loading' || this.state.folders === 'loading') {
-      return (
-        <div>Oops nothing here...</div>
-      )
-    }
+    // if (this.state.notes === 'loading' || this.state.folders === 'loading') {
+    //   return (
+    //     <div>Oops nothing here...</div>
+    //   )
+    // }
 
     const contextValue = {
       notes: this.state.notes,
