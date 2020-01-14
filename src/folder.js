@@ -10,7 +10,7 @@ class Folder extends Component {
       fetch('https://frozen-ravine-41788.herokuapp.com/api/folders/'+ folderId, {
         method: 'DELETE',
         headers: {
-          'Authorization' : 'Bearer' + process.env.authorization_key,
+          'Authorization' : 'Bearer' + process.env.authorization,
           'content-type': 'application/json'
         },
       })
