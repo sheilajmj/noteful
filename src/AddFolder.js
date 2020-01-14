@@ -33,7 +33,7 @@ class AddFolder extends Component {
       method: "POST",
       body: `{"folder_name": "${folder}"}`,
       headers: {
-        'Authorization' : 'Bearer' + ,
+        'Authorization' : `Bearer + ${authorization-key}`,
         "Content-Type": "application/json",
       }
     };
