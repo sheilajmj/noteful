@@ -7,6 +7,7 @@ class Folder extends Component {
   static contextType = NoteContext;
 
   handleRemoveFolder(folderId, callback){
+    console.log("https://frozen-ravine-41788.herokuapp.com/api/folders/'+ folderId:", https://frozen-ravine-41788.herokuapp.com/api/folders/'+ folderId)
       fetch('https://frozen-ravine-41788.herokuapp.com/api/folders/'+ folderId, {
         method: 'DELETE',
         headers: {
