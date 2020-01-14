@@ -108,11 +108,11 @@ class App extends Component {
   }
 
   render() {
-    // if (this.state.notes === 'loading' || this.state.folders === 'loading') {
-    //   return (
-    //     <div>Oops nothing here...</div>
-    //   )
-    // }
+    if (this.state.notes === 'loading' || this.state.folders === 'loading') {
+      return (
+        <div>Oops nothing here...</div>
+      )
+    }
 
     const contextValue = {
       notes: this.state.notes,
