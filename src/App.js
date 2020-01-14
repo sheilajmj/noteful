@@ -69,7 +69,7 @@ class App extends Component {
     fetch('https://frozen-ravine-41788.herokuapp.com/api/folders', {
       method: 'GET',
       headers: {
-        'Authorization' : `Bearer + ${authorization-key}`,
+        'Authorization' : `Bearer + ${process.env.authorization-key}`,
         'Accept': 'application/json',
         'content-type': 'application/json',
 
@@ -89,7 +89,7 @@ class App extends Component {
     fetch('https://frozen-ravine-41788.herokuapp.com/api/notes', {
       method: 'GET',
       headers: {
-        'Authorization' : `Bearer + ${authorization-key}`,
+        'Authorization' : `Bearer + ${process.env.authorization-key}`,
         'Accept': 'application/json',
         'content-type': 'application/json'
       }

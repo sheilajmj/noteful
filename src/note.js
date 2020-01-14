@@ -6,7 +6,7 @@ function deleteNoteRequest(noteId, callback) {
     fetch('https://frozen-ravine-41788.herokuapp.com//api/notes/'+ noteId, {
       method: 'DELETE',
       headers: {
-        'Authorization' : `Bearer + ${authorization-key}`,
+        'Authorization' : `Bearer + ${process.env.authorization-key}`,
         'content-type': 'application/json'
       },
     })
