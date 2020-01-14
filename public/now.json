@@ -4,5 +4,10 @@
   "routes": [
       { "handle": "filesystem" },
       { "src": "/.*", "dest": "/index.html" }
-  ]
+  ],
+   "build": {
+      "env": {
+        "authorization": "@authorization_key"
+    }
+  }
 }
