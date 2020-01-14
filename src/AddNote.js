@@ -44,7 +44,7 @@ class AddNote extends Component {
       method: "POST",
       body: JSON.stringify(note),
       headers: {
-        'Authorization' : 'Bearer' + process.env.authorization,
+        'Authorization' : 'Bearer ' + process.env.authorization,
         "Content-Type": "application/json",
       }
     };
