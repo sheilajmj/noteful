@@ -122,6 +122,7 @@ class App extends Component {
       deleteFolder: this.deleteFolder,
       handleAddNote: this.handleAddNote,
       handleAddFolder: this.handleAddFolder,
+      setNotes: this.setNotes
     }
 
 

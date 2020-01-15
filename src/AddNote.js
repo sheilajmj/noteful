@@ -56,8 +56,13 @@ class AddNote extends Component {
         return res.json();
       })
       .then(data => {
+        let newNoteArray = this.context.notes.concat(note)
+        this.context.setNote(newNoteArray)
+      })
+      .then(data => { 
         this.context.handleAddNote(note);
       })
+      
       .catch(err => {
         this.setState({
           error: err.message
