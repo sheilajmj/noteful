@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import NoteMain from './selectedNote';
+import SelectedNote from './selectedNote';
 import NoteSidebar from './selectedNoteSidebar';
 
 
 
 
 class FolderView extends Component {
+    
     render(){
         return(
             <div className="viewWrap">
@@ -13,7 +14,7 @@ class FolderView extends Component {
                     <NoteSidebar/>
                 </section>
                 <section className="mainSection">
-                    <NoteMain/>
+                    <SelectedNote/>
                 </section>
             </div>
         )

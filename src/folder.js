@@ -24,7 +24,7 @@ class Folder extends Component {
               throw error
             })
           }
-          return res.json()
+          // return res.json()
         })
         .then(data => {
           // call the callback when the request is successful

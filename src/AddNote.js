@@ -30,7 +30,6 @@ class AddNote extends Component {
       document.getElementById("newNoteForm").reset();
       let element = document.getElementById("addNoteError")
       element.classList.add('hide');
-      this.props.history.push('/')
     }
     else {
       return this.showError();

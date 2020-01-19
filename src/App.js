@@ -32,7 +32,7 @@ class App extends Component {
   setNotes = notes => {
     this.setState({
       notes: notes,
-      error: null,
+      error: null
     })
   }
 
@@ -61,8 +61,18 @@ class App extends Component {
   }
 
   handleAddNote = note => {
-    let newNoteArray = this.state.notes.concat(note)
+    console.log("we made it to handle add Note")
+    const noteForState = {
+      name: note.note_name,
+      content: note.note_content,
+      folderId: note.folder_id
+    }
+    console.log("this is noteForState", noteForState)
+    let newNoteArray = this.state.notes.concat(noteForState)
+    console.log("this is noteForState", noteForState)
+    console.log("this is newNoteArray in handleAddNote", newNoteArray)  
     this.setNotes(newNoteArray)
+    this.props.history.push('/');
   }
 
   componentDidMount() {
@@ -110,7 +120,7 @@ class App extends Component {
   render() {
     if (this.state.notes === 'loading' || this.state.folders === 'loading') {
       return (
-        <div>Oops nothing here...</div>
+        <div>Oops!  The notes and folders are still loading!</div>
       )
     }
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import NoteContext from './NoteContext'
 
 function deleteNoteRequest(noteId, callback) {
-    fetch('https://frozen-ravine-41788.herokuapp.com//api/notes/'+ noteId, {
+    fetch('https://frozen-ravine-41788.herokuapp.com/api/notes/'+ noteId, {
       method: 'DELETE',
       headers: {
         'Authorization' : process.env.authorization,
@@ -18,9 +18,10 @@ function deleteNoteRequest(noteId, callback) {
             // then throw it
             throw error
           })
-        }
         return res.json()
+        }
       })
+
       .then(data => {
         // call the callback when the request is successful
         // this is where the App component can remove it from state
