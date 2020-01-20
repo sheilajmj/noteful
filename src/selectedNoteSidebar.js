@@ -21,7 +21,7 @@ class SelectedNoteSidebar extends Component {
   console.log("folderIdOfNote", selectedNote.folderId)
   const folderOfNote = foldersArray.find(folder => folder.id === folderIdOfNote)
 console.log("folderOfNote", folderOfNote)
-
+  return (
     <section className= 'folderSelection'>
       {folderOfNote.name}
       <AddFolderButton />
