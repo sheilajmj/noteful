@@ -14,20 +14,14 @@ class SelectedNoteSidebar extends Component {
     console.log("foldersArray", foldersArray)
     const notesArray = this.context.notes 
     console.log("notesArray", notesArray)
-    const selectedNote = notesArray.find((note) => {
-      if (note.id ===  this.props.match.params.id){
-        return note
-      }
-    if (!note){
-      return <div>Failed url error</div>
-    }
-  })
+    const selectedNote = notesArray.find(note => note.id ===  this.props.match.params.id)
+  
 
   const folderIdOfNote = selectedNote.folderId
   console.log("folderIdOfNote", selectedNote.folderId)
   const folderOfNote = foldersArray.find(folder => folder.id === folderIdOfNote)
 console.log("folderOfNote", folderOfNote)
-  return (
+
     <section className= 'folderSelection'>
       {folderOfNote.name}
       <AddFolderButton />
