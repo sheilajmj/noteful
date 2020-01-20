@@ -14,7 +14,7 @@ class SelectedNoteSidebar extends Component {
     console.log("foldersArray", foldersArray)
     const notesArray = this.context.notes 
     console.log("notesArray", notesArray)
-    const selectedNote = notesArray.find(note => note.id === parseInt(this.props.match.params.id))
+    const selectedNote = notesArray.find(note => notesArray.id === parseInt(this.props.match.params.id))
 
   const folderIdOfNote = selectedNote.folderId
   console.log("folderIdOfNote", selectedNote.folderId)
