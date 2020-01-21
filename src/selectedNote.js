@@ -8,28 +8,6 @@ import AddNoteButton from './AddNoteButton';
 class SelectedNote extends Component {
   static contextType = NoteContext;
 
-  // getNotesRequest = () => {
-  //   console.log("this is in get Notes Request")
-  //   fetch('https://frozen-ravine-41788.herokuapp.com/api/notes', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization' : process.env.authorization,
-  //       'Accept': 'application/json',
-  //       'content-type': 'application/json'
-  //     }
-  //   })
-  //     .then(res => {
-  //       if (!res.ok) {
-  //         throw new Error(res.status)
-  //       }
-  //       return res.json()
-  //     })
-  //     .then((notes) => {
-  //       this.context.setNotes(notes)
-  //     })
-  
-  //     .catch(error => this.context.setState({ error }))
-  // }
   
   
   deleteNoteRequest = (noteId, callback) => {
@@ -63,12 +41,7 @@ class SelectedNote extends Component {
 
 
   render() {
-
-      // this.getNotesRequest();
-    console.log("this props match params", this.props.match.params)
       const newNotes = this.context.notes.filter(note => note.id === parseInt(this.props.match.params.id))
-    console.log("These are new Notes", newNotes)
-
       const noteComponentsMapped = newNotes.map((note) => {
         return  <div className="note" id = {note.id}> 
           <Link to={`/note/${note.id}`}><h2> {note.name} </h2></Link>
@@ -97,7 +70,7 @@ class SelectedNote extends Component {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       modified: PropTypes.string.isRequired,
-      folderId: PropTypes.string.isRequired,
+      folder_id: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
     })
   }

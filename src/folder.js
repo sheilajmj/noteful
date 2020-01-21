@@ -6,9 +6,8 @@ import NoteContext from './NoteContext';
 class Folder extends Component {
   static contextType = NoteContext;
 
-  handleRemoveFolder(folderId, callback){
-    console.log("process.env.authorization", process.env.authorization)
-      fetch('https://frozen-ravine-41788.herokuapp.com/api/folders/'+ folderId, {
+  handleRemoveFolder(folder_id, callback){
+    fetch('https://frozen-ravine-41788.herokuapp.com/api/folders/'+ folder_id, {
         method: 'DELETE',
         headers: {
           'Authorization' : process.env.authorization,
@@ -29,7 +28,7 @@ class Folder extends Component {
         .then(data => {
           // call the callback when the request is successful
           // this is where the App component can remove it from state
-          callback(folderId)
+          callback(folder_id)
         })
         .catch(error => {
           console.error(error)

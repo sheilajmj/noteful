@@ -11,7 +11,7 @@ class FolderSpecificNotes extends Component {
   render(){  
     const notes= this.context.notes
     console.log ('these are props', this.props)
-    const newNotes =   notes.filter(note => note.folderId === parseInt(this.props.match.params.id))
+    const newNotes =   notes.filter(note => note.folder_id === parseInt(this.props.match.params.id))
     const noteComponents =  newNotes.map((note) => {
       return <Note item = {note} key = {note.id} /> 
     })
@@ -32,7 +32,7 @@ class FolderSpecificNotes extends Component {
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         modified: PropTypes.string.isRequired,
-        folderId: PropTypes.string.isRequired,
+        folder_id: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
       })
     }

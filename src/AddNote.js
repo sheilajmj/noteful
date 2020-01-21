@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import NoteContext from './NoteContext';
+// import { useUID } from 'react-uid';
+const uuidv4 = require('uuid/v4');
 
 class AddNote extends Component {
   static contextType = NoteContext;
 
   showError() {
-    console.log("showError ran")
     // return <div className='folderNameError'>A folder name is required.</div>
     let element = document.getElementById("addNoteError");
     element.classList.remove("hide");
@@ -25,7 +26,7 @@ class AddNote extends Component {
         return getId
       });
       const newNoteFolderId = newNoteFolderInfo.id
-      const newNoteObject = { "note_name": newNoteName, "note_content": newNoteContent,  "folder_id": newNoteFolderId, }
+      const newNoteObject = { "id": uuidv4(), "note_name": newNoteName, "note_content": newNoteContent,  "folder_id": newNoteFolderId, }
       this.handleAddNewNote(newNoteObject)
       document.getElementById("newNoteForm").reset();
       let element = document.getElementById("addNoteError")

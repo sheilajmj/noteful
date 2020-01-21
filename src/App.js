@@ -45,12 +45,12 @@ class App extends Component {
     this.setNotes(newNoteList)
   }
 
-  deleteFolder = folderId => {
+  deleteFolder = folder_id => {
     if (this.state.folders === 'loading'){
       throw new Error ('tried to delete a folder while folders are loading')
     }
     const folders = this.state.folders;
-    const newFolderList = folders.filter(folder => folder.id !== folderId)
+    const newFolderList = folders.filter(folder => folder.id !== folder_id)
     this.setFolders(newFolderList);
   }
 
@@ -61,16 +61,13 @@ class App extends Component {
   }
 
   handleAddNote = note => {
-    console.log("we made it to handle add Note")
     const noteForState = {
+      id: parseInt(note.id),
       name: note.note_name,
       content: note.note_content,
-      folderId: note.folder_id
+      folder_id: note.folder_id
     }
-    console.log("this is noteForState", noteForState)
     let newNoteArray = this.state.notes.concat(noteForState)
-    console.log("this is noteForState", noteForState)
-    console.log("this is newNoteArray in handleAddNote", newNoteArray)  
     this.setNotes(newNoteArray)
     this.props.history.push('/');
   }

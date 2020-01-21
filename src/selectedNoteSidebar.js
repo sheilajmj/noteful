@@ -14,10 +14,12 @@ class SelectedNoteSidebar extends Component {
     console.log("foldersArray", foldersArray)
     const notesArray = this.context.notes 
     console.log("notesArray", notesArray)
-    const selectedNote = notesArray.find(note => notesArray.id === parseInt(this.props.match.params.id))
-
-  const folderIdOfNote = selectedNote.folderId
-  console.log("folderIdOfNote", selectedNote.folderId)
+    const noteId = parseInt(this.props.match.params.id)
+    console.log("noteId", noteId)
+    const selectedNote = notesArray.find(note => note.id === noteId)
+    console.log("selectedNote", selectedNote)
+  const folderIdOfNote = selectedNote.folder_id
+  console.log("folderIdOfNote", selectedNote.folder_id)
   const folderOfNote = foldersArray.find(folder => folder.id === folderIdOfNote)
 console.log("folderOfNote", folderOfNote)
   return (

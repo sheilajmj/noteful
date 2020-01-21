@@ -29,7 +29,7 @@ AllViewNotes.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     modified: PropTypes.string.isRequired,
-    folderId: PropTypes.string.isRequired,
+    folder_id: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
   })
 }

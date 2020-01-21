@@ -5,7 +5,6 @@ class AddFolder extends Component {
   static contextType = NoteContext;
   
   showError(){
-    console.log("showError ran")
     // return <div className='folderNameError'>A folder name is required.</div>
     let element = document.getElementById("addFolderError");
     element.classList.remove("hide");
